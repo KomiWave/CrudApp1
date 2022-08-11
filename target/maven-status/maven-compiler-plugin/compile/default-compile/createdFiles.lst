@@ -1,0 +1,5 @@
+ru\kozhevnikov\course\controllers\PeopleController.class
+ru\kozhevnikov\course\сonfigs\CrudApp1Config.class
+ru\kozhevnikov\course\сonfigs\CrudApp1DispatcherServletInitializer.class
+ru\kozhevnikov\course\dao\PersonDAO.class
+ru\kozhevnikov\course\models\Person.class
