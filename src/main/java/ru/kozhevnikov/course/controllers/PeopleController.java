@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.kozhevnikov.course.dao.PersonDAO;
 import ru.kozhevnikov.course.models.Person;
 
-import java.sql.SQLException;
-
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
