@@ -67,13 +67,12 @@ public class PersonDAO {
 
         long before = System.currentTimeMillis();
 
-        jdbcTemplate.batchUpdate("INSERT INTO Person VALUES(?,?,?,?)", new BatchPreparedStatementSetter() {
+        jdbcTemplate.batchUpdate("INSERT INTO Person(name, age, email) VALUES(?, ?, ?)", new BatchPreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
-                ps.setInt(1, personList.get(i).getId());
-                ps.setString(2, personList.get(i).getName());
-                ps.setInt(3, personList.get(i).getAge());
-                ps.setString(4, personList.get(i).getEmail());
+                ps.setString(1, personList.get(i).getName());
+                ps.setInt(2, personList.get(i).getAge());
+                ps.setString(3, personList.get(i).getEmail());
             }
 
             @Override
@@ -87,29 +86,29 @@ public class PersonDAO {
         System.out.println("TimeWithBatchUpdate: " + (after - before));
     }
 
-//    public void testBatchDelete() {
-//        List<Integer> idList = new ArrayList<>();
-//        for (int i = 0; i < 1000; i++) {
-//            idList.add(i);
-//        }
-//        jdbcTemplate.batchUpdate("DELETE FROM Person WHERE id=?", new BatchPreparedStatementSetter() {
-//            @Override
-//            public void setValues(PreparedStatement ps, int i) throws SQLException {
-//                ps.setInt(1, idList.get(i));
-//            }
-//
-//            @Override
-//            public int getBatchSize() {
-//                return idList.size();
-//            }
-//        });
-//    }
+    public void testBatchDelete() {
+        List<Integer> idList = new ArrayList<>();
+        for (int i = 1; i < 1001; i++) {
+            idList.add(i);
+        }
+        jdbcTemplate.batchUpdate("DELETE FROM Person WHERE id=?", new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps, int i) throws SQLException {
+                ps.setInt(1, idList.get(i));
+            }
+
+            @Override
+            public int getBatchSize() {
+                return idList.size();
+            }
+        });
+    }
 
     private List<Person> create1000People() {
         List<Person> personList = new ArrayList<>();
 
-        for (int i = 0; i < 1000; i++) {
-            personList.add(new Person(i, "Name" + i, 30, "test" + i + "google.com"));
+        for (int i = 1; i < 1001; i++) {
+            personList.add(new Person("Name" + i, 30, "test" + i + "google.com"));
         }
         return personList;
     }

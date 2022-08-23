@@ -10,6 +10,10 @@
 <br>
 <a href="/test-batch-update/with">Batch update (x1000)</a>
 <hr>
-<a href="/test-batch-update/batch-delete">Batch update delete (0-1000)</a>
+
+<form th:method="DELETE" th:action="@{/test-batch-update/batch-delete}">
+    <input type="submit" value="Delete">
+</form>
+
 </body>
 </html>

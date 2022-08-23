@@ -31,9 +31,9 @@ public class BatchController {
         return "redirect:/people";
     }
 
-//    @GetMapping("/batch-delete")
-//    public String batchDelete() {
-//        personDAO.testBatchDelete();
-//        return "redirect:/people";
-//    }
+    @DeleteMapping("/batch-delete")
+    public String batchDelete() {
+        personDAO.testBatchDelete();
+        return "redirect:/people";
+    }
 }
